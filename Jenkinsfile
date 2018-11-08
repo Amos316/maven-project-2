@@ -4,7 +4,9 @@ pipeline{
         stage('Build') {
             steps{
                 withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin://sbin:/bin']) {
-                    sh 'clean package'
+                    withMaven(maven: 'maven_3.6.0') {
+                        sh 'clean package'
+                    }
                 }
             }
             post {
